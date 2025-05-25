@@ -7,22 +7,24 @@
 
             <div class="container">
                 @foreach ($home_first_section as $key => $home_first_sections)
-                <div class="row gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                        <h1 data-aos="fade-up"><b style="color: #F69A1A">Goldfish:</b> {{ $home_first_sections->title }}</h1>
-                        <p data-aos="fade-up" data-aos-delay="100">{!! $home_first_sections->description !!}</p>
-                        <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-                            <a href="{{ $home_first_sections->link }}" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
-                            <a href="#"
-                                class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
-                                    class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                    <div class="row gy-4">
+                        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                            <h1 data-aos="fade-up"><b style="color: #F69A1A">Goldfish:</b> {{ $home_first_sections->title }}
+                            </h1>
+                            <p data-aos="fade-up" data-aos-delay="100">{!! $home_first_sections->description !!}</p>
+                            <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
+                                <a href="{{ $home_first_sections->link }}" class="btn-get-started">Get Started <i
+                                        class="bi bi-arrow-right"></i></a>
+                                <a href="#"
+                                    class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
+                                        class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                            <img src="{{ asset('uploads/first_section/' . $home_first_sections->image) }}"
+                                class="img-fluid animated" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                        <img src="{{ asset('uploads/first_section/' . $home_first_sections->image) }}" class="img-fluid animated"
-                            alt="">
-                    </div>
-                </div>
                 @endforeach
             </div>
 
@@ -30,18 +32,18 @@
 
 
         <!-- Clients Section -->
-<section id="clients" class="clients section">
+        <section id="clients" class="clients section">
 
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Clients</h2>
-        <p>We work with best clients<br></p>
-    </div><!-- End Section Title -->
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Clients</h2>
+                <p>We work with best clients<br></p>
+            </div><!-- End Section Title -->
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="swiper init-swiper">
-            <script type="application/json" class="swiper-config">
+                <div class="swiper init-swiper">
+                    <script type="application/json" class="swiper-config">
             {
               "loop": true,
               "speed": 600,
@@ -75,24 +77,24 @@
             }
             </script>
 
-            <div class="swiper-wrapper align-items-center">
-                @foreach ($clients as $client)
-                    <div class="swiper-slide text-center">
-                        <a href="{{ $client->link }}" target="_blank">
-                            <img src="{{ asset('uploads/first_section/' . $client->logo) }}" class="img-fluid"
-                                alt="{{ $client->name ?? 'Client Logo' }}" loading="lazy" width="150">
-                        </a>
+                    <div class="swiper-wrapper align-items-center">
+                        @foreach ($clients as $client)
+                            <div class="swiper-slide text-center">
+                                <a href="{{ $client->link }}" target="_blank">
+                                    <img src="{{ asset('uploads/first_section/' . $client->logo) }}" class="img-fluid"
+                                        alt="{{ $client->name ?? 'Client Logo' }}" loading="lazy" width="150">
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+
+                    <div class="swiper-pagination"></div>
+                </div>
+
             </div>
 
-            <div class="swiper-pagination"></div>
-        </div>
-
-    </div>
-
-</section>
-<!-- /Clients Section -->
+        </section>
+        <!-- /Clients Section -->
 
         <!-- About Section -->
         <section id="about" class="about section">
@@ -151,8 +153,7 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-1.png') }}" class="img-fluid"
-                                alt="">
+                            <img src="{{ asset('front-assets/assets/img/values-1.png') }}" class="img-fluid" alt="">
                             <h3>Core Function</h3>
                             <p>Establish organizational structure, maintain personnel records, and support report
                                 preparation.
@@ -162,8 +163,7 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-2.png') }}" class="img-fluid"
-                                alt="">
+                            <img src="{{ asset('front-assets/assets/img/values-2.png') }}" class="img-fluid" alt="">
                             <h3>Self-Service</h3>
                             <p>Empower your employees to request time off, review pay history, and update contact
                                 information with a few clicks.
@@ -173,8 +173,7 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-3.png') }}" class="img-fluid"
-                                alt="">
+                            <img src="{{ asset('front-assets/assets/img/values-3.png') }}" class="img-fluid" alt="">
                             <h3>Workflow Automation</h3>
                             <p>Automate business processes, trigger actions, generate alerts, messages, and reports.
                             </p>
@@ -448,88 +447,32 @@
             <div class="container">
 
                 <div class="row gy-4">
-                    
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-item item-cyan position-relative">
-                            <i class="bi bi-activity icon"></i>
-                            <h3>Employee Leave Management</h3>
-                            <p>“GOLDFISH” is an optional tool which most companies end up making use of eventually. With it,
-                                you can keep a track of the amount of sick leave, half-days, overtime and absences of your
-                                employees over the course of the month. It’s a much more efficient system and both you and
-                                the employees are able to view their leave balance in real time and how their subsequent
-                                monthly salary will be affected by their absence from the office.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
+                    @php
+                        $colors = ['item-cyan', 'item-orange', 'item-teal', 'item-red', 'item-indigo', 'item-pink'];
+                    @endphp
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-item item-orange position-relative">
-                            <i class="bi bi-broadcast icon"></i>
-                            <h3>Better Security</h3>
-                            <p>There are quite a few loopholes associated with manual operations. File-loss or illegal
-                                activities within the office can go unnoticed. However, with “GOLDFISH” software in place,
-                                each activity is monitored and the operations are far clearer. Also, your company’s
-                                confidential information remains secure because there are no physical files to be exploited.
-                                The best payroll software should offer you the best IT security.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
-                                    class="bi bi-arrow-right"></i></a>
+                    @foreach ($services as $index => $service)
+                        @php
+                            $colorClass = $colors[$index % count($colors)];
+                            $delay = 100 * ($index + 1);
+                        @endphp
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $delay }}">
+                            <div class="service-item {{ $colorClass }} position-relative text-center">
+                                <img src="{{ asset('uploads/services/' . $service->image) }}"
+                                    alt="{{ $service->title }}"
+                                    style="height: 80px; object-fit: contain; margin-bottom: 20px;" />
+                                <h3>{{ $service->title }}</h3>
+                               <p> {!! $service->description !!}</p>
+                                <a href="#" class="read-more stretched-link">
+                                    <span>Read More</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div><!-- End Service Item -->
+                    @endforeach
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-item item-teal position-relative">
-                            <i class="bi bi-easel icon"></i>
-                            <h3>Time-Efficient</h3>
-                            <p>One of the major advantages of “GOLDFISH” payroll software is that it saves time. You don’t
-                                have to mark attendance manually, you are free from the hassles of managing leave and
-                                absences, the pay slips are generated on their own, etc. This gives your HR officer time to
-                                focus on other tasks with a lot more ease and peace of mind. Additional features specific to
-                                your choice of software can further streamline your HR processes, allowing them to run more
-                                efficiently.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="service-item item-red position-relative">
-                            <i class="bi bi-bounding-box-circles icon"></i>
-                            <h3>Easy on the Pocket</h3>
-                            <p>“GOLDFISH” Payroll software can save you a great amount of money. Since you’ll be taking
-                                things into your own hands, you won’t necessarily need to hire a professional to perform the
-                                required duties within the organization. It’s a great deal because you are getting some
-                                really handy features for a fairly low price.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                        <div class="service-item item-indigo position-relative">
-                            <i class="bi bi-calendar4-week icon"></i>
-                            <h3>Important Updates</h3>
-                            <p>“GOLDFISH” payroll software’s are updated on a regular basis. This is an important feature
-                                because it ensures that your company is always aligned with the latest updates made to
-                                government policies. It helps you to stay on track and avoid any unwanted incidents, both
-                                legally and financially.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service-item item-pink position-relative">
-                            <i class="bi bi-chat-square-text icon"></i>
-                            <h3>Report Generation</h3>
-                            <p>From “GOLDFISH” Payroll management system, a customized report can be generated by any
-                                organization to gather various relevant information’s to the organization that helps to
-                                improve the monitoring aspects of the company or residential area.</p>
-                            <a href="#" class="read-more stretched-link"><span>Read More</span> <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
+                    <!-- End Service Item -->
 
                 </div>
 
@@ -909,27 +852,26 @@
                     </script>
                     <div class="swiper-wrapper">
                         @foreach ($testimonials as $testimonial)
+                            <div class="swiper-slide">
 
-                        <div class="swiper-slide">
-
-                            <div class="testimonial-item">
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
+                                <div class="testimonial-item">
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p>
+                                        {{ $testimonial->description }}
+                                    </p>
+                                    <div class="profile mt-auto">
+                                        <img src="{{ asset('uploads/testimonials/' . $testimonial->logo) }}"
+                                            class="testimonial-img" alt="">
+                                        <h3>{{ $testimonial->name }}</h3>
+                                        <h4>{{ $testimonial->designation }}</h4>
+                                    </div>
                                 </div>
-                                <p>
-                                    {{ $testimonial->description }}
-                                </p>
-                                <div class="profile mt-auto">
-                                    <img src="{{ asset('uploads/testimonials/' . $testimonial->logo) }}"
-                                        class="testimonial-img" alt="">
-                                    <h3>{{ $testimonial->name }}</h3>
-                                    <h4>{{ $testimonial->designation }}</h4>
-                                </div>
-                            </div>
 
-                        </div><!-- End testimonial item -->
+                            </div><!-- End testimonial item -->
                         @endforeach
 
                     </div>
