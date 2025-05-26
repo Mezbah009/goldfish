@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\AccreditationController;
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AiSolutionController;
 use App\Http\Controllers\admin\AwardController;
+use App\Http\Controllers\admin\BlogAuthorController;
+use App\Http\Controllers\admin\BlogCategoryController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CaseStudyController;
 use App\Http\Controllers\admin\CategoryController;
@@ -257,6 +259,23 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit');
         Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blog.update');
         Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blog.delete');
+
+
+
+        // Route::resource('blog-authors', BlogAuthorController::class);
+
+        Route::get('/blog-authors', [BlogAuthorController::class, 'index'])->name('blog_authors.index');
+        Route::get('/blog-authors/create', [BlogAuthorController::class, 'create'])->name('blog_authors.create');
+        Route::post('/blog-authors', [BlogAuthorController::class, 'store'])->name('blog_authors.store');
+        Route::get('/blog-authors/{id}/edit', [BlogAuthorController::class, 'edit'])->name('blog_authors.edit');
+        Route::put('/blog-authors/{id}', [BlogAuthorController::class, 'update'])->name('blog_authors.update');
+        Route::delete('/blog-authors/{id}', [BlogAuthorController::class, 'destroy'])->name('blog_authors.destroy');
+
+
+        Route::resource('blog_categories', BlogCategoryController::class);
+
+
+
 
 
         // Case Study
