@@ -139,80 +139,28 @@
 
 
         <!-- Values Section -->
-        <section id="values" class="values section">
+       <section id="values" class="values section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Transforming HR for Enhanced Efficiency and Compliance</h2>
+        <p>What we value most<br></p>
+    </div><!-- End Section Title -->
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Transforming HR for Enhanced Efficiency and Compliance</h2>
-                <p>What we value most<br></p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-1.png') }}" class="img-fluid" alt="">
-                            <h3>Core Function</h3>
-                            <p>Establish organizational structure, maintain personnel records, and support report
-                                preparation.
-                            </p>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-2.png') }}" class="img-fluid" alt="">
-                            <h3>Self-Service</h3>
-                            <p>Empower your employees to request time off, review pay history, and update contact
-                                information with a few clicks.
-                            </p>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-3.png') }}" class="img-fluid" alt="">
-                            <h3>Workflow Automation</h3>
-                            <p>Automate business processes, trigger actions, generate alerts, messages, and reports.
-                            </p>
-                        </div>
+    <div class="container">
+        <div class="row gy-4">
+            @foreach($home_services_section as $index => $service)
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ 100 + ($index * 100) }}">
+                    <div class="card">
+                        <img src="{{ asset('uploads/first_section/' . $service->icon) }}" class="img-fluid" alt="{{ $service->title }}">
+                        <h3>{{ $service->title }}</h3>
+                        <p> {!! $service->description !!}</p>
                     </div>
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-4.png') }}" class="img-fluid"
-                                alt="">
-                            <h3>Administration</h3>
-                            <p>Define plan coverage, enrollment, and coverage calculations for various benefit plan types.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-5.png') }}" class="img-fluid"
-                                alt="">
-                            <h3>Talent Management</h3>
-                            <p>Enhance employee engagement, productivity, and retention.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <img src="{{ asset('front-assets/assets/img/values-6.png') }}" class="img-fluid"
-                                alt="">
-                            <h3>Attendance</h3>
-                            <p>Maintain detailed attendance history, track leaves, and vacations.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- End Card Item -->
-
                 </div>
-
-            </div>
-
-        </section><!-- /Values Section -->
+            @endforeach
+        </div>
+    </div>
+</section>
+<!-- /Values Section -->
 
         <!-- Stats Section -->
         <section id="stats" class="stats section">

@@ -13,11 +13,11 @@ class HomeServicesSectionController extends Controller
     public function index(Request $request)
     {
         $sections = HomeServicesSection::latest();
-        if(!empty($request->get('keyword'))){
-            $sections = $sections->where('title','like','%'.$request->get('keyword').'%');
+        if (!empty($request->get('keyword'))) {
+            $sections = $sections->where('title', 'like', '%' . $request->get('keyword') . '%');
         }
         $sections = $sections->latest()->paginate(10);
-        return view('admin.home_services_section.list',compact('sections'));
+        return view('admin.home_services_section.list', compact('sections'));
     }
 
     public function create()
@@ -32,11 +32,13 @@ class HomeServicesSectionController extends Controller
         $validator = Validator::make($request->all(), [
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'nullable|string',
+            'description' => 'nullable|string', // ✅ Added validation
         ]);
 
         if ($validator->passes()) {
             $section = new HomeServicesSection();
             $section->title = $request->title;
+            $section->description = $request->description; // ✅ Assigning description
 
             if ($request->hasFile('icon')) {
                 $icon = $request->file('icon');
@@ -58,54 +60,66 @@ class HomeServicesSectionController extends Controller
     }
 
 
+
     public function edit($id)
-{
-    $section = HomeServicesSection::findOrFail($id);
-    return view('admin.home_services_section.edit')->with('section', $section);
-}
-
-public function update(Request $request, $id)
-{
-    // Validate the request data
-    $validator = Validator::make($request->all(), [
-        'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'title' => 'nullable|string',
-    ]);
-
-    if ($validator->passes()) {
+    {
         $section = HomeServicesSection::findOrFail($id);
-        $section->title = $request->title;
+        return view('admin.home_services_section.edit')->with('section', $section);
+    }
 
-        if ($request->hasFile('icon')) {
-            $icon = $request->file('icon');
-            $iconName = 'icon_' . time() . '.' . $icon->getClientOriginalExtension();
-            $icon->move(public_path('uploads/first_section'), $iconName);
-            $section->icon = $iconName;
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'nullable|string',
+            'description' => 'nullable|string', // ✅ Added validation
+        ]);
+
+        if ($validator->passes()) {
+            $section = HomeServicesSection::findOrFail($id);
+            $section->title = $request->title;
+            $section->description = $request->description; // ✅ Assigning description
+
+            if ($request->hasFile('icon')) {
+                $icon = $request->file('icon');
+                $iconName = 'icon_' . time() . '.' . $icon->getClientOriginalExtension();
+                $icon->move(public_path('uploads/first_section'), $iconName);
+                $section->icon = $iconName;
+            }
+
+            $section->save();
+
+            // Redirect to index page
+            return redirect()->route('home_services_section.index')->with('success', 'Service updated successfully');
+        } else {
+            return back()->withErrors($validator)->withInput();
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        $section = HomeServicesSection::findOrFail($id);
+
+        // Delete the icon file if it exists
+        if ($section->icon) {
+            $iconPath = public_path('uploads/first_section/' . $section->icon);
+            if (file_exists($iconPath)) {
+                @unlink($iconPath); // Safely delete the file
+            }
         }
 
-        $section->save();
+        // Delete the record from the database
+        $section->delete();
 
-        // Redirect to index page
-        return redirect()->route('home_services_section.index')->with('success', 'Service updated successfully');
-    } else {
-        return back()->withErrors($validator)->withInput();
+        // Flash success message
+        session()->flash('success', 'Service deleted successfully');
+
+        // Return JSON response
+        return response()->json([
+            'status' => true,
+            'message' => 'Service deleted successfully'
+        ]);
     }
-}
-
-public function destroy($id)
-{
-    $section = HomeServicesSection::findOrFail($id);
-    $section->delete();
-
-    // Flash success message
-    session()->flash('success', 'Service deleted successfully');
-
-    // Return JSON response
-    return response()->json([
-        'status' => true,
-        'message' => 'Service deleted successfully'
-    ]);
-}
-
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\HomeFirstSection;
+use App\Models\HomeServicesSection;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -24,6 +25,9 @@ class FrontController extends Controller
 
         $services = Service::all();
         $data['services'] = $services;
+
+        $home_services_section = HomeServicesSection::all();
+        $data['home_services_section'] = $home_services_section;
 
 
 
