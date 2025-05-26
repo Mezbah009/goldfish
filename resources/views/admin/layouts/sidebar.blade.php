@@ -219,6 +219,25 @@
                         <p>Blogs</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('blog_authors.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Blogs Author</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('blog_categories.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Blogs Category</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('blog_categories.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Blogs</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('casestudy.index') }}" class="nav-link">
