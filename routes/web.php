@@ -72,6 +72,13 @@ Route::get('/projects/{id}', [FrontController::class, 'projectDetails'])->name('
 Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
 Route::get('/blog/{id}', [FrontController::class, 'blogDetails'])->name('front.blog.details');
 
+
+Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
+Route::get('/blog/{slug}', [FrontController::class, 'blogDetails'])->name('front.blog.details');
+Route::get('blog/category/{slug}', [BlogController::class, 'category'])->name('front.blog.category');
+
+
+
 //admin Routes---------------------------------------------------------------------
 
 Route::group(['prefix' => 'admin'], function () {
