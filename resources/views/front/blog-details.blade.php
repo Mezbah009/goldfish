@@ -19,100 +19,60 @@
                         <article class="article">
 
                             <div class="post-img">
-                                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                                <img src="{{ asset('uploads/blogs/' . $blog->feature_image) }}" alt="{{ $blog->title }}"
+                                    class="img-fluid">
                             </div>
 
-                            <h2 class="title">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia
+                            <h2 class="title">{{ $blog->title }}
                             </h2>
 
                             <div class="meta-top">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="blog-details.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                            href="blog-details.html"><time datetime="2020-01-01">Jan 1, 2022</time></a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                                            href="blog-details.html">12 Comments</a></li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-person"></i>
+                                        <a href="javascript:void(0);">{{ $blog->author->name ?? 'Unknown Author' }}</a>
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-clock"></i>
+                                        <a href="javascript:void(0);">
+                                            <time
+                                                datetime="{{ $blog->published_at }}">{{ \Carbon\Carbon::parse($blog->published_at)->format('M d, Y') }}</time>
+                                        </a>
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-chat-dots"></i>
+                                        <a href="javascript:void(0);">0 Comments</a> {{-- Replace with dynamic comment count if available --}}
+                                    </li>
                                 </ul>
-                            </div><!-- End meta top -->
+                            </div>
+                            <!-- End meta top -->
 
                             <div class="content">
-                                <p>
-                                    Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                    praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                    Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est
-                                    cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis
-                                    dolore.
-                                </p>
-
-                                <p>
-                                    Sit repellat hic cupiditate hic ut nemo. Quis nihil sunt non reiciendis. Sequi in
-                                    accusamus harum vel aspernatur. Excepturi numquam nihil cumque odio. Et voluptate
-                                    cupiditate.
-                                </p>
-
-                                <blockquote>
-                                    <p>
-                                        Et vero doloremque tempore voluptatem ratione vel aut. Deleniti sunt animi aut. Aut
-                                        eos aliquam doloribus minus autem quos.
-                                    </p>
-                                </blockquote>
-
-                                <p>
-                                    Sed quo laboriosam qui architecto. Occaecati repellendus omnis dicta inventore tempore
-                                    provident voluptas mollitia aliquid. Id repellendus quia. Asperiores nihil magni dicta
-                                    est suscipit perspiciatis. Voluptate ex rerum assumenda dolores nihil quaerat.
-                                    Dolor porro tempora et quibusdam voluptas. Beatae aut at ad qui tempore corrupti velit
-                                    quisquam rerum. Omnis dolorum exercitationem harum qui qui blanditiis neque.
-                                    Iusto autem itaque. Repudiandae hic quae aspernatur ea neque qui. Architecto voluptatem
-                                    magni. Vel magnam quod et tempora deleniti error rerum nihil tempora.
-                                </p>
-
-                                <h3>Et quae iure vel ut odit alias.</h3>
-                                <p>
-                                    Officiis animi maxime nulla quo et harum eum quis a. Sit hic in qui quos fugit ut rerum
-                                    atque. Optio provident dolores atque voluptatem rem excepturi molestiae qui. Voluptatem
-                                    laborum omnis ullam quibusdam perspiciatis nulla nostrum. Voluptatum est libero eum
-                                    nesciunt aliquid qui.
-                                    Quia et suscipit non sequi. Maxime sed odit. Beatae nesciunt nesciunt accusamus quia aut
-                                    ratione aspernatur dolor. Sint harum eveniet dicta exercitationem minima. Exercitationem
-                                    omnis asperiores natus aperiam dolor consequatur id ex sed. Quibusdam rerum dolores sint
-                                    consequatur quidem ea.
-                                    Beatae minima sunt libero soluta sapiente in rem assumenda. Et qui odit voluptatem. Cum
-                                    quibusdam voluptatem voluptatem accusamus mollitia aut atque aut.
-                                </p>
-                                <img src="assets/img/blog/blog-inside-post.jpg" class="img-fluid" alt="">
-
-                                <h3>Ut repellat blanditiis est dolore sunt dolorum quae.</h3>
-                                <p>
-                                    Rerum ea est assumenda pariatur quasi et quam. Facilis nam porro amet nostrum. In
-                                    assumenda quia quae a id praesentium. Quos deleniti libero sed occaecati aut porro
-                                    autem. Consectetur sed excepturi sint non placeat quia repellat incidunt labore. Autem
-                                    facilis hic dolorum dolores vel.
-                                    Consectetur quasi id et optio praesentium aut asperiores eaque aut. Explicabo omnis
-                                    quibusdam esse. Ex libero illum iusto totam et ut aut blanditiis. Veritatis numquam ut
-                                    illum ut a quam vitae.
-                                </p>
-                                <p>
-                                    Alias quia non aliquid. Eos et ea velit. Voluptatem maxime enim omnis ipsa voluptas
-                                    incidunt. Nulla sit eaque mollitia nisi asperiores est veniam.
-                                </p>
+                                <div>{!! $blog->content !!}</div>
 
                             </div><!-- End post content -->
 
                             <div class="meta-bottom">
                                 <i class="bi bi-folder"></i>
                                 <ul class="cats">
-                                    <li><a href="#">Business</a></li>
+                                    @foreach ($blog->categories as $category)
+                                        <li>
+                                            <a
+                                                href="{{ route('front.blog.category', $category->id) }}">{{ $category->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
 
                                 <i class="bi bi-tags"></i>
                                 <ul class="tags">
-                                    <li><a href="#">Creative</a></li>
-                                    <li><a href="#">Tips</a></li>
-                                    <li><a href="#">Marketing</a></li>
+                                    @foreach ($blog->tags as $tag)
+                                        <li>
+                                            <a href="{{ route('front.blog.tag', $tag->id) }}">{{ $tag->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
-                            </div><!-- End meta bottom -->
+                            </div>
+                            <!-- End meta bottom -->
 
                         </article>
 
@@ -121,27 +81,33 @@
 
                 <!-- Blog Author Section -->
                 <section id="blog-author" class="blog-author section">
-
                     <div class="container">
                         <div class="author-container d-flex align-items-center">
-                            <img src="assets/img/blog/blog-author.jpg" class="rounded-circle flex-shrink-0" alt="">
+                            <img src="{{ asset('uploads/authors/' . $blog->author->profile_image) }}"
+                                class="rounded-circle flex-shrink-0" alt="{{ $blog->author->name }}">
+
                             <div>
-                                <h4>Jane Smith</h4>
+                                <h4>{{ $blog->author->name }}</h4>
+
                                 <div class="social-links">
-                                    <a href="https://x.com/#"><i class="bi bi-twitter-x"></i></a>
-                                    <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
-                                    <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
+                                    {{-- Optional: Add dynamic social links if available --}}
+                                    @if (!empty($blog->author->twitter))
+                                        <a href="{{ $blog->author->twitter }}"><i class="bi bi-twitter-x"></i></a>
+                                    @endif
+                                    @if (!empty($blog->author->facebook))
+                                        <a href="{{ $blog->author->facebook }}"><i class="bi bi-facebook"></i></a>
+                                    @endif
+                                    @if (!empty($blog->author->instagram))
+                                        <a href="{{ $blog->author->instagram }}"><i class="bi bi-instagram"></i></a>
+                                    @endif
                                 </div>
-                                <p>
-                                    Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium.
-                                    Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium
-                                    ut unde voluptas.
-                                </p>
+
+                                <p>{!! $blog->author->bio !!}</p>
                             </div>
                         </div>
                     </div>
-
-                </section><!-- /Blog Author Section -->
+                </section>
+                <!-- /Blog Author Section -->
 
                 <!-- Blog Comments Section -->
                 <section id="blog-comments" class="blog-comments section">
@@ -271,16 +237,21 @@
                 <section id="comment-form" class="comment-form section">
                     <div class="container">
 
-                        <form action="">
+                        <form action="{{ route('blog.comment.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                            <input type="hidden" name="parent_id" id="parent_id" value="">
 
                             <h4>Post Comment</h4>
-                            <p>Your email address will not be published. Required fields are marked * </p>
+                            <p>Your email address will not be published. Required fields are marked *</p>
+
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                                    <input name="name" type="text" class="form-control" placeholder="Your Name*"
+                                        required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                                    <input name="email" type="email" class="form-control" placeholder="Your Email*">
                                 </div>
                             </div>
                             <div class="row">
@@ -291,15 +262,15 @@
                             </div>
                             <div class="row">
                                 <div class="col form-group">
-                                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                                    <textarea name="comment" class="form-control" placeholder="Your Comment*" required></textarea>
                                 </div>
                             </div>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Post Comment</button>
                             </div>
-
                         </form>
+
 
                     </div>
                 </section><!-- /Comment Form Section -->
@@ -323,84 +294,51 @@
 
                     <!-- Categories Widget -->
                     <div class="categories-widget widget-item">
-
                         <h3 class="widget-title">Categories</h3>
                         <ul class="mt-3">
-                            <li><a href="#">General <span>(25)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                            <li><a href="#">Travel <span>(5)</span></a></li>
-                            <li><a href="#">Design <span>(22)</span></a></li>
-                            <li><a href="#">Creative <span>(8)</span></a></li>
-                            <li><a href="#">Educaion <span>(14)</span></a></li>
-                        </ul>
+                            @foreach ($categories as $cat)
+                                <li>
+                                    <a href="{{ route('front.blog.category', $cat->id) }}">
+                                        {{ $cat->name }} <span>({{ $cat->blogs_count }})</span>
+                                    </a>
+                                </li>
+                            @endforeach
 
-                    </div><!--/Categories Widget -->
+
+                        </ul>
+                    </div>
+                    <!--/Categories Widget -->
 
                     <!-- Recent Posts Widget -->
                     <div class="recent-posts-widget widget-item">
-
                         <h3 class="widget-title">Recent Posts</h3>
 
-                        <div class="post-item">
-                            <img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
+                        @foreach ($recentPosts as $recent)
+                            <div class="post-item d-flex align-items-center">
+                                <img src="{{ asset('uploads/blogs/' . $recent->feature_image) }}"
+                                    alt="{{ $recent->title }}" class="flex-shrink-0" width="80">
+                                <div class="ms-3">
+                                    <h4><a
+                                            href="{{ route('front.blog.details', $recent->slug) }}">{{ Str::limit($recent->title, 50) }}</a>
+                                    </h4>
+                                    <time
+                                        datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y') }}</time>
+                                </div>
                             </div>
-                        </div><!-- End recent post item-->
-
-                        <div class="post-item">
-                            <img src="assets/img/blog/blog-recent-2.jpg" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Quidem autem et impedit</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div><!-- End recent post item-->
-
-                        <div class="post-item">
-                            <img src="assets/img/blog/blog-recent-3.jpg" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div><!-- End recent post item-->
-
-                        <div class="post-item">
-                            <img src="assets/img/blog/blog-recent-4.jpg" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div><!-- End recent post item-->
-
-                        <div class="post-item">
-                            <img src="assets/img/blog/blog-recent-5.jpg" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div><!-- End recent post item-->
-
+                        @endforeach
                     </div><!--/Recent Posts Widget -->
 
                     <!-- Tags Widget -->
                     <div class="tags-widget widget-item">
-
                         <h3 class="widget-title">Tags</h3>
                         <ul>
-                            <li><a href="#">App</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Mac</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Studio</a></li>
-                            <li><a href="#">Smart</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
+                            @foreach ($tags as $tag)
+                                <li>
+                                    <a href="{{ route('front.blog.tag', $tag->id) }}">{{ $tag->name }}</a>
+                                </li>
+                            @endforeach
 
+                        </ul>
                     </div><!--/Tags Widget -->
 
                 </div>
@@ -410,3 +348,16 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+<script>
+    function setReply(commentId) {
+        document.getElementById('parent_id').value = commentId;
+        window.scrollTo({
+            top: document.getElementById('comment-form').offsetTop,
+            behavior: 'smooth'
+        });
+    }
+</script>
+@endsection
+

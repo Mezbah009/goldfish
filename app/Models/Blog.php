@@ -40,4 +40,10 @@ class Blog extends Model
     {
         return $this->belongsToMany(BlogTag::class, 'blog_blog_tag', 'blog_id', 'tag_id');
     }
+
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->latest();
+    }
 }

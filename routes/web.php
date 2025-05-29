@@ -76,6 +76,21 @@ Route::get('/blog/{id}', [FrontController::class, 'blogDetails'])->name('front.b
 Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
 Route::get('/blog/{slug}', [FrontController::class, 'blogDetails'])->name('front.blog.details');
 Route::get('blog/category/{slug}', [BlogController::class, 'category'])->name('front.blog.category');
+Route::get('/blogs/category/{id}', [FrontController::class, 'categoryWiseBlog'])->name('front.blog.category');
+
+Route::get('/blogs/tag/{id}', [FrontController::class, 'tagWiseBlog'])->name('front.blog.tag');
+
+Route::get('/blog/search', [FrontController::class, 'searchBlog'])->name('front.blog.search');
+
+
+Route::post('/blog/comment/store', [FrontController::class, 'storeComment'])->name('blog.comment.store');
+
+
+
+
+
+
+
 
 
 
@@ -265,6 +280,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('blog_authors', BlogAuthorController::class);
         Route::resource('blog_categories', BlogCategoryController::class);
         Route::resource('blog_tags', BlogTagController::class);
+
 
 
         // Case Study
