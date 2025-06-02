@@ -28,7 +28,6 @@
                                     <th>Author</th>
                                     <th>Published</th>
                                     <th>Published At</th>
-                                    <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -55,7 +54,6 @@
                                             @endif
                                         </td>
                                         <td>{{ $blog->published_at ? $blog->published_at->format('d M Y') : '-' }}</td>
-                                        <td>{{ $blog->created_at->format('d M Y') }}</td>
 
                                         <td>
                                             <a href="{{ route('blogs.edit', $blog->id) }}"

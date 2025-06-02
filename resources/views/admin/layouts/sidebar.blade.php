@@ -216,7 +216,8 @@
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-handshake"></i>
+                        <i class="nav-icon fas fa-pen-fancy"></i>
+
 
                         <p>
                             Blogs
@@ -226,27 +227,36 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('blogs.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-newspaper"></i>
+                                <i class="nav-icon fas fa-pen-fancy"></i>
+
                                 <p>Blogs</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('blog_authors.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-newspaper"></i>
+                                <i class="nav-icon fas fa-user"></i>
+
                                 <p>Blogs Author</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('blog_categories.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-newspaper"></i>
+                                <i class="nav-icon fas fa-folder"></i>
                                 <p>Blogs Category</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="{{ route('blog_tags.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-newspaper"></i>
+                                <i class="nav-icon fas fa-tag"></i>
+
                                 <p>Blog Tag</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.comments.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-comments"></i>
+                                <p>comments</p>
                             </a>
                         </li>
                     </ul>

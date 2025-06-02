@@ -101,6 +101,18 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="published_at">Published At</label>
+                                    <input type="datetime-local"
+                                        class="form-control @error('published_at') is-invalid @enderror" name="published_at"
+                                        id="published_at" value="{{ old('published_at') }}">
+                                    @error('published_at')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
 
 
                             <!-- Feature Image -->
@@ -177,6 +189,19 @@
         // Summernote init (optional for bio)
         $('.summernote').summernote({
             height: 250
+        });
+
+        $(function() {
+            function togglePublishedAt() {
+                if ($('#is_published').is(':checked')) {
+                    $('#published_at').closest('.col-md-6').show();
+                } else {
+                    $('#published_at').closest('.col-md-6').hide();
+                }
+            }
+
+            $('#is_published').on('change', togglePublishedAt);
+            togglePublishedAt(); // initial check
         });
     </script>
 @endsection

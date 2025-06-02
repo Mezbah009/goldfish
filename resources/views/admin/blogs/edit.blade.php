@@ -103,6 +103,18 @@
                                     </select>
                                 </div>
                             </div>
+                            <!-- Published At -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="published_at">Published At</label>
+                                    <input type="datetime-local" name="published_at" id="published_at"
+                                        class="form-control @error('published_at') is-invalid @enderror"
+                                        value="{{ old('published_at', $blog->published_at ? \Carbon\Carbon::parse($blog->published_at)->format('Y-m-d\TH:i') : '') }}">
+                                    @error('published_at')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <!-- Feature Image -->
                             <div class="col-md-6">
@@ -141,11 +153,8 @@
 @endsection
 
 @section('customJs')
-    <!-- Multi-select Tag CSS -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
-
-    <!-- Multi-select Tag JS -->
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
 
     <script>
@@ -153,10 +162,19 @@
             $('.summernote').summernote({
                 height: 250
             });
-
-            // Initialize multi-select tag
             new MultiSelectTag('category_ids');
             new MultiSelectTag('tag_ids');
+
+            function togglePublishedAt() {
+                if ($('#is_published').is(':checked')) {
+                    $('#published_at').closest('.col-md-6').show();
+                } else {
+                    $('#published_at').closest('.col-md-6').hide();
+                }
+            }
+
+            $('#is_published').on('change', togglePublishedAt);
+            togglePublishedAt();
         });
     </script>
 @endsection

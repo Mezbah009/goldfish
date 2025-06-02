@@ -41,7 +41,7 @@
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <i class="bi bi-chat-dots"></i>
-                                        <a href="javascript:void(0);">0 Comments</a> {{-- Replace with dynamic comment count if available --}}
+                                        <a href="javascript:void(0);">{{ $blog->comments->count() }} Comments</a> {{-- Replace with dynamic comment count if available --}}
                                     </li>
                                 </ul>
                             </div>
@@ -111,131 +111,43 @@
 
                 <!-- Blog Comments Section -->
                 <section id="blog-comments" class="blog-comments section">
-
                     <div class="container">
+                        <h4 class="comments-count">{{ $blog->comments->count() }} Comments</h4>
 
-                        <h4 class="comments-count">8 Comments</h4>
+                        @foreach ($comments as $comment)
+                            @include('partials.comment', ['comment' => $comment])
+                        @endforeach
 
-                        <div id="comment-1" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i
-                                                class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan,2022</time>
-                                    <p>
-                                        Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut
-                                        sapiente quis molestiae est qui cum soluta.
-                                        Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                                    </p>
-                                </div>
-                            </div>
-                        </div><!-- End comment #1 -->
-
-                        <div id="comment-2" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i
-                                                class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan,2022</time>
-                                    <p>
-                                        Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe.
-                                        Officiis illo ut beatae.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div id="comment-reply-1" class="comment comment-reply">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img src="assets/img/blog/comments-3.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan,2022</time>
-                                        <p>
-                                            Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur
-                                            ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut
-                                            est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt
-                                            qui illum omnis est et dolor recusandae.
-
-                                            Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro
-                                            aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur
-                                            distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio
-                                            laborum minima fugiat.
-
-                                            Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error
-                                            dolorum non autem quisquam vero rerum neque.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div id="comment-reply-2" class="comment comment-reply">
-                                    <div class="d-flex">
-                                        <div class="comment-img"><img src="assets/img/blog/comments-4.jpg" alt="">
-                                        </div>
-                                        <div>
-                                            <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i
-                                                        class="bi bi-reply-fill"></i> Reply</a></h5>
-                                            <time datetime="2020-01-01">01 Jan,2022</time>
-                                            <p>
-                                                Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia dolores
-                                                cupiditate et. Ut unde qui eligendi sapiente omnis ullam. Placeat porro est
-                                                commodi est officiis voluptas repellat quisquam possimus. Perferendis id
-                                                consectetur necessitatibus.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </div><!-- End comment reply #2-->
-
-                            </div><!-- End comment reply #1-->
-
-                        </div><!-- End comment #2-->
-
-                        <div id="comment-3" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="assets/img/blog/comments-5.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i
-                                                class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan,2022</time>
-                                    <p>
-                                        Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus quia nihil
-                                        ut accusantium tempore. Nesciunt expedita id dolor exercitationem aspernatur aut
-                                        quam ut. Voluptatem est accusamus iste at.
-                                        Non aut et et esse qui sit modi neque. Exercitationem et eos aspernatur. Ea est
-                                        consequuntur officia beatae ea aut eos soluta. Non qui dolorum voluptatibus et optio
-                                        veniam. Quam officia sit nostrum dolorem.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div><!-- End comment #3 -->
-
-                        <div id="comment-4" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="assets/img/blog/comments-6.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i
-                                                class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan,2022</time>
-                                    <p>
-                                        Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit tempore.
-                                        Cumque sed quia ut maxime. Est ad aut cum. Ut exercitationem non in fugiat.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div><!-- End comment #4 -->
 
                     </div>
 
-                </section><!-- /Blog Comments Section -->
+
+                </section>
+                <!-- /Blog Comments Section -->
 
                 <!-- Comment Form Section -->
                 <section id="comment-form" class="comment-form section">
                     <div class="container">
+
+                        <!-- Flash Messages -->
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
 
                         <form action="{{ route('blog.comment.store') }}" method="POST">
                             @csrf
@@ -256,8 +168,7 @@
                             </div>
                             <div class="row">
                                 <div class="col form-group">
-                                    <input name="website" type="text" class="form-control"
-                                        placeholder="Your Website">
+                                    <input name="website" type="text" class="form-control" placeholder="Your Website">
                                 </div>
                             </div>
                             <div class="row">
@@ -285,8 +196,8 @@
                     <div class="search-widget widget-item">
 
                         <h3 class="widget-title">Search</h3>
-                        <form action="">
-                            <input type="text">
+                        <form action="{{ route('front.blog.search') }}" method="GET">
+                            <input type="text" name="q" placeholder="Search blog" value="{{ request('q') }}">
                             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
                         </form>
 
@@ -321,8 +232,15 @@
                                     <h4><a
                                             href="{{ route('front.blog.details', $recent->slug) }}">{{ Str::limit($recent->title, 50) }}</a>
                                     </h4>
-                                    <time
-                                        datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y') }}</time>
+                                        @if ($recent->published_at)
+                                        <time datetime="{{ $recent->published_at }}">
+                                            {{ $recent->published_at->format('M d, Y') }}
+                                        </time>
+                                    @else
+                                        <time datetime="">
+                                            Not Published
+                                        </time>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
@@ -350,14 +268,19 @@
 @endsection
 
 @section('scripts')
-<script>
-    function setReply(commentId) {
-        document.getElementById('parent_id').value = commentId;
-        window.scrollTo({
-            top: document.getElementById('comment-form').offsetTop,
-            behavior: 'smooth'
-        });
-    }
-</script>
-@endsection
+    <script>
+        function setReply(commentId) {
+            document.getElementById('parent_id').value = commentId;
+            document.getElementById('replying-to').style.display = 'block';
+            window.scrollTo({
+                top: document.getElementById('comment-form').offsetTop,
+                behavior: 'smooth'
+            });
+        }
 
+        function cancelReply() {
+            document.getElementById('parent_id').value = '';
+            document.getElementById('replying-to').style.display = 'none';
+        }
+    </script>
+@endsection

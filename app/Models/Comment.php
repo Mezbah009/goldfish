@@ -20,4 +20,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Blog::class);
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id');
+    }
 }

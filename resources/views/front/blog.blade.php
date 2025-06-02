@@ -1,41 +1,21 @@
 @extends('front.layouts.app')
 @section('content')
-<br>
-<br>
-<br><br>
-<br><br>
+    <br>
+    <br>
+    <br><br>
+    <br><br>
+
 
     <!-- Recent Posts Section -->
     <section id="recent-posts" class="recent-posts section" style="padding: 0px 0;">
-
-        {{-- <div class="container section-title" data-aos="fade-up">
-            <h2>Recent Posts</h2>
-            <p>Recent posts form our Blog</p>
-
-        {{-- <div class="container section-title" data-aos="fade-up">
-            <div class="section-header">
-                <h2>Recent Posts</h2>
-                <h1>Recent News & Information</h1>
-                <h6>Get updated with the latest news and information about HRM software in Bangladesh</h6>
-            </div> --}}
-
-
 
         <div class="container section-title" data-aos="fade-up">
             <div class="section-header">
                 <h2>Recent Posts</h2>
                 <h1>Recent News & Information</h1>
-                <h6>Get updated with the latest news and information about HRM software in Bangladesh</h6>
+                <h6>Get updated with the latest news and information about HRM software</h6>
             </div>
-
-
-
-        <!-- Section Title -->
-        {{-- <div class="container section-title" data-aos="fade-up">
-            <h2>Recent Posts</h2>
-            <p>Recent posts form our Blog</p>
-        </div><!-- End Section Title --> --}}
-
+        </div>
     </section>
 
     <div class="container">
@@ -72,9 +52,15 @@
                                         <div class="meta-top">
                                             <ul>
                                                 <li><i class="bi bi-person"></i> {{ $blog->author->name ?? 'Admin' }}</li>
-                                                <li><i class="bi bi-clock"></i> {{ $blog->created_at->format('F d, Y') }}
+                                                <li>
+                                                    <i class="bi bi-clock"></i>
+                                                    {{ $blog->published_at ? $blog->published_at->format('F d, Y') : 'Not Published' }}
                                                 </li>
-                                                {{-- <li>0 Comments</li> --}}
+                                                <li>
+                                                    <i class="bi bi-chat-dots"></i>
+                                                    <a href="javascript:void(0);">{{ $blog->comments->count() }}
+                                                        Comments</a> {{-- Replace with dynamic comment count if available --}}
+                                                </li>
                                             </ul>
                                         </div>
 
@@ -148,8 +134,6 @@
                             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
                         </form>
 
-
-
                     </div><!--/Search Widget -->
 
                     <!-- Categories Widget -->
@@ -170,7 +154,6 @@
                     <!--/Categories Widget -->
 
                     <!-- Recent Posts Widget -->
-                    <!-- Recent Posts Widget -->
                     <div class="recent-posts-widget widget-item">
                         <h3 class="widget-title">Recent Posts</h3>
 
@@ -182,8 +165,16 @@
                                     <h4><a
                                             href="{{ route('front.blog.details', $recent->slug) }}">{{ Str::limit($recent->title, 50) }}</a>
                                     </h4>
-                                    <time
-                                        datetime="{{ $recent->created_at }}">{{ $recent->created_at->format('M d, Y') }}</time>
+                                    @if ($recent->published_at)
+                                        <time datetime="{{ $recent->published_at }}">
+                                            {{ $recent->published_at->format('M d, Y') }}
+                                        </time>
+                                    @else
+                                        <time datetime="">
+                                            Not Published
+                                        </time>
+                                    @endif
+
                                 </div>
                             </div>
                         @endforeach

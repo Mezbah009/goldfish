@@ -49,38 +49,58 @@ class FrontController extends Controller
 
 
 
-    public function blog()
+    private function getSidebarData()
     {
-        $blogs = Blog::latest()->paginate(4); // Paginate 4 per page
-        $categories = BlogCategory::withCount('blogs')->get(); // Assuming relationship exists
-        $recentPosts = Blog::latest()->take(5)->get();
-        $tags = BlogTag::withCount('blogs')->get(); // Assuming tags are stored in comma-separated format or JSON
-        
-
-        return view('front.blog', compact('blogs', 'categories', 'recentPosts', 'tags',));
+        return [
+            'categories' => BlogCategory::withCount('blogs')->get(),
+            'recentPosts' => Blog::where('is_published', 1)
+                ->whereNotNull('published_at')
+                ->latest()
+                ->take(5)
+                ->get(),
+            'tags' => BlogTag::withCount('blogs')->get(),
+        ];
     }
 
+    public function blog()
+    {
+        $blogs = Blog::with(['categories', 'tags', 'author'])
+            ->where('is_published', 1)
+            ->whereNotNull('published_at')
+            ->latest()
+            ->paginate(4);
+
+        $data = $this->getSidebarData();
+
+        return view('front.blog', array_merge(['blogs' => $blogs], $data));
+    }
 
     public function categoryWiseBlog($id)
     {
         $category = BlogCategory::findOrFail($id);
-        $blogs = $category->blogs()->latest()->paginate(4); // Adjust per-page as needed
-        $categories = BlogCategory::withCount('blogs')->get();
-        $recentPosts = Blog::latest()->take(5)->get();
-        $tags = BlogTag::withCount('blogs')->get();
+        $blogs = $category->blogs()
+            ->with(['categories', 'tags', 'author'])
+            ->where('is_published', 1)
+            ->whereNotNull('published_at')
+            ->latest()
+            ->paginate(4);
+        $data = $this->getSidebarData();
 
-        return view('front.blog', compact('blogs', 'categories', 'recentPosts', 'tags', 'category'));
+        return view('front.blog', array_merge(['blogs' => $blogs, 'category' => $category], $data));
     }
 
     public function tagWiseBlog($id)
     {
         $tag = BlogTag::findOrFail($id);
-        $blogs = $tag->blogs()->latest()->paginate(4);
-        $categories = BlogCategory::withCount('blogs')->get();
-        $recentPosts = Blog::latest()->take(5)->get();
-        $tags = BlogTag::withCount('blogs')->get();
+        $blogs = $tag->blogs()
+            ->with(['categories', 'tags', 'author'])
+            ->where('is_published', 1)
+            ->whereNotNull('published_at')
+            ->latest()
+            ->paginate(4);
+        $data = $this->getSidebarData();
 
-        return view('front.blog', compact('blogs', 'categories', 'recentPosts', 'tags', 'tag'));
+        return view('front.blog', array_merge(['blogs' => $blogs, 'tag' => $tag], $data));
     }
 
 
@@ -88,41 +108,52 @@ class FrontController extends Controller
     {
         $query = $request->input('q');
 
-        $blogs = Blog::where(function ($q) use ($query) {
-            $q->where('title', 'like', "%{$query}%")
-                ->orWhere('slug', 'like', "%{$query}%")
-                ->orWhere('content', 'like', "%{$query}%");
-        })
+        $blogs = Blog::with(['categories', 'tags', 'author'])
+            ->where(function ($qBuilder) use ($query) {
+                $qBuilder->where('title', 'like', "%{$query}%")
+                    ->orWhere('slug', 'like', "%{$query}%")
+                    ->orWhere('content', 'like', "%{$query}%");
+            })
             ->latest()
             ->paginate(4);
 
-        // Preserve search term in pagination links
+
         $blogs->appends(['q' => $query]);
 
-        // Sidebar data
-        $categories = BlogCategory::withCount('blogs')->get();
-        $recentPosts = Blog::latest()->take(5)->get();
-        $tags = BlogTag::withCount('blogs')->get();
 
-        return view('front.blog', compact('blogs', 'categories', 'recentPosts', 'tags', 'query'));
+
+        $data = $this->getSidebarData();
+
+        return view('front.blog', array_merge(['blogs' => $blogs, 'query' => $query], $data));
     }
-
-
 
 
 
     public function blogDetails($slug)
     {
-        $blog = Blog::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        $blog = Blog::where('slug', $slug)
+            ->where('is_published', true)
+            ->whereNotNull('published_at')
+            ->firstOrFail();
 
         $categories = BlogCategory::withCount('blogs')->get();
-        $recentPosts = Blog::latest()->take(5)->get();
+
+        $recentPosts = Blog::where('is_published', true)
+            ->whereNotNull('published_at')
+            ->latest()
+            ->take(5)
+            ->get();
+
         $tags = BlogTag::withCount('blogs')->get();
 
-        $comments = $blog->comments()->with('replies')->get();
+        $comments = $blog->comments()
+            ->whereNull('parent_id')
+            ->with('replies')
+            ->get();
 
         return view('front.blog-details', compact('blog', 'categories', 'recentPosts', 'tags', 'comments'));
     }
+
 
 
 
@@ -136,13 +167,13 @@ class FrontController extends Controller
             'comment' => 'required|string',
             'parent_id' => 'nullable|exists:comments,id',
 
-
         ]);
 
         Comment::create($validated);
 
         return back()->with('success', 'Your comment has been posted.');
     }
+
 
 
 

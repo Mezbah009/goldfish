@@ -44,6 +44,7 @@ class BlogController extends Controller
             'category_ids.*' => 'exists:blog_categories,id',
             'tag_ids' => 'nullable|array',
             'tag_ids.*' => 'exists:blog_tags,id',
+            'published_at' => 'nullable|date',
         ]);
 
         DB::beginTransaction();
@@ -62,7 +63,9 @@ class BlogController extends Controller
             $blog->excerpt = $request->excerpt;
             $blog->content = $request->content;
             $blog->is_published = $request->has('is_published') ? $request->boolean('is_published') : true;
-            $blog->published_at = $blog->is_published ? now() : null;
+            $blog->published_at = $request->has('is_published')
+                ? ($request->filled('published_at') ? $request->published_at : now())
+                : null;
 
             // Handle feature image
             if ($request->hasFile('feature_image')) {
@@ -115,6 +118,7 @@ class BlogController extends Controller
             'feature_image' => 'nullable|image|mimes:jpg,jpeg,png',
             'category_ids' => 'nullable|array',
             'tag_ids' => 'nullable|array',
+            'published_at' => 'nullable|date',
         ]);
 
         $slug = Str::slug($request->title);
@@ -131,7 +135,9 @@ class BlogController extends Controller
         $blog->excerpt = $request->excerpt;
         $blog->content = $request->content;
         $blog->is_published = $request->has('is_published');
-        $blog->published_at = $request->has('is_published') ? now() : null;
+        $blog->published_at = $blog->is_published
+            ? ($request->filled('published_at') ? $request->published_at : now())
+            : null;
 
         // Feature image
         if ($request->hasFile('feature_image')) {
@@ -168,4 +174,14 @@ class BlogController extends Controller
 
 
 
+   public function indexBlog()
+
+    {
+        $comments = \App\Models\Comment::with(['blog', 'replies'])
+            ->whereNull('parent_id') // only top-level comments
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.blogs.index-blog', compact('comments'));
+    }
 }
