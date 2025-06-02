@@ -73,21 +73,13 @@ Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
 Route::get('/blog/{id}', [FrontController::class, 'blogDetails'])->name('front.blog.details');
 
 
-// Main blog listing
+
+// blog Routes
 Route::get('/blog', [FrontController::class, 'blog'])->name('front.blog');
-
-// 🔍 Search - must come before slug
 Route::get('/blog/search', [FrontController::class, 'searchBlog'])->name('front.blog.search');
-
-
-// Category and tag filtering
 Route::get('/blogs/category/{id}', [FrontController::class, 'categoryWiseBlog'])->name('front.blog.category');
 Route::get('/blogs/tag/{id}', [FrontController::class, 'tagWiseBlog'])->name('front.blog.tag');
-
-// Blog detail (must come last to avoid conflicts)
 Route::get('/blog/{slug}', [FrontController::class, 'blogDetails'])->name('front.blog.details');
-
-// Comment store
 Route::post('/blog/comment/store', [FrontController::class, 'storeComment'])->name('blog.comment.store');
 
 
