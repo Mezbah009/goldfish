@@ -27,6 +27,7 @@
                             <tr>
                                 <th class="px-4 py-2">Name</th>
                                 <th class="px-4 py-2">Email</th>
+                                <th class="px-4 py-2">Phone</th>
                                 <th class="px-4 py-2">Company Name</th>
                                 <th class="px-4 py-2">Employee Count</th>
                                 <th class="px-4 py-2">Message</th>
@@ -40,6 +41,7 @@
                                 <tr class="border-t">
                                     <td class="px-4 py-2">{{ $message->name }}</td>
                                     <td class="px-4 py-2">{{ $message->email }}</td>
+                                    <td class="px-4 py-2">{{ $message->phone }}</td>
                                     <td class="px-4 py-2">{{ $message->company_name }}</td>
                                     <td class="px-4 py-2">{{ $message->employee_count }}</td>
                                     <td class="px-4 py-2">{{ Str::limit($message->message, 50) }}</td>
