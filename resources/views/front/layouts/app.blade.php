@@ -219,7 +219,7 @@
                         {{-- <p>Khan Tower (2nd Floor , 3rd Floor & 4th Floor) </p>
                         <p>80/3, VIP Road, Kakrail Dhaka, Bangladesh.</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+88-01811317129</span></p> --}}
-                        <p><strong>Email:</strong> <span>info@goldfish-hr.com</span></p>
+                        <p><strong>Email:</strong> <span>info@opus-bd.com</span></p>
                     </div>
                 </div>
 
@@ -277,7 +277,7 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('front-assets/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('front-assets/assets/vendor/php-email-form/validate.js') }}"></script>
+    {{-- <script src="{{ asset('front-assets/assets/vendor/php-email-form/validate.js') }}"></script> --}}
     <script src="{{ asset('front-assets/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('front-assets/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('front-assets/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
@@ -289,38 +289,7 @@
     <script src="{{ asset('front-assets/assets/js/main.js') }}"></script>
 
 
-    <script>
-        $('#newsletter-form').on('submit', function(e) {
-            e.preventDefault();
-            var form = $(this);
-            var email = form.find('input[name="email"]').val();
-            form.find('.loading').show();
-            form.find('.error-message').hide();
-            form.find('.sent-message').hide();
 
-            $.ajax({
-                type: 'POST',
-                url: form.attr('action'),
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    email: email
-                },
-                success: function(response) {
-                    form.find('.loading').hide();
-                    if (response.status) {
-                        form.find('.sent-message').text(response.message).show();
-                        form[0].reset();
-                    } else {
-                        form.find('.error-message').text(response.message).show();
-                    }
-                },
-                error: function(xhr) {
-                    form.find('.loading').hide();
-                    form.find('.error-message').text('Something went wrong.').show();
-                }
-            });
-        });
-    </script>
 
 
 </body>

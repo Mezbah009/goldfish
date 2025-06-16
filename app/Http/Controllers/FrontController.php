@@ -9,12 +9,14 @@ use App\Models\BlogTag;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Comment;
+use App\Models\ContactForm;
 use App\Models\HomeFirstSection;
 use App\Models\HomeServicesSection;
 use App\Models\Newsletter;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
@@ -45,7 +47,9 @@ class FrontController extends Controller
 
     public function pricing()
     {
-        return view('front.pricing');
+        $clients = Client::all();
+        $data['clients'] = $clients;
+        return view('front.pricing', $data);
     }
 
 
@@ -209,6 +213,30 @@ class FrontController extends Controller
 
     public function contact()
     {
-        return view('front.contact');
+        $clients = Client::all();
+        $data['clients'] = $clients;
+        return view('front.contact', $data);
+    }
+
+
+    public function storeContactForm(Request $request)
+    {
+
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'company_name' => 'required',
+            'message' => 'required',
+            'employee_count' => 'required'
+        ]);
+
+        $contact = ContactForm::create($request->all());
+
+        // Optional: send a confirmation email
+        // Mail::to($contact->email)->send(new \App\Mail\ContactConfirmationMail($contact));
+
+        return redirect()->back()->with('success', 'Your message has been sent. Thank you!');
     }
 }

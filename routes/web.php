@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientCategoryController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\ContactController;
+use App\Http\Controllers\admin\ContactFormController;
 use App\Http\Controllers\admin\CyberSecurityFirstSectionController;
 use App\Http\Controllers\admin\CyberSecuritySecondSectionController;
 use App\Http\Controllers\admin\HomeController;
@@ -66,7 +67,7 @@ use Illuminate\Support\Str;
 Route::get('/', [FrontController::class, 'index'])->name('front.home');
 
 Route::get('/about', [FrontController::class, 'about'])->name('front.about');
-Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
+// Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
 Route::get('/pricing', [FrontController::class, 'pricing'])->name('front.pricing');
 Route::get('/projects', [FrontController::class, 'projects'])->name('front.projects');
 Route::get('/projects/{id}', [FrontController::class, 'projectDetails'])->name('front.project.details');
@@ -86,6 +87,11 @@ Route::post('/blog/comment/store', [FrontController::class, 'storeComment'])->na
 
 //newsletter subscription
 Route::post('/subscribe', [FrontController::class, 'subscribe'])->name('newsletter.subscribe');
+
+
+Route::get('/contact-us', [FrontController::class, 'contact'])->name('front.contact');
+Route::post('/contact-us', [FrontController::class, 'storeContactForm'])->name('contact_us.store');
+
 
 
 
@@ -415,6 +421,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/newsletter', [NewsletterController::class, 'index'])->name('admin.newsletter.index');
         Route::delete('/newsletter/{id}', [NewsletterController::class, 'destroy'])->name('admin.newsletter.destroy');
         Route::get('/admin/newsletter/export', [NewsletterController::class, 'export'])->name('admin.newsletter.export');
+
+
+        Route::get('/contact-messages', [ContactFormController::class, 'index'])->name('admin.contact.index');
+        Route::delete('/contact-messages/{id}', [ContactFormController::class, 'destroy'])->name('admin.contact.destroy');
+        Route::get('/contact-forms/export', [ContactFormController::class, 'export'])->name('admin.contact.export');
+
+
+
 
 
 
