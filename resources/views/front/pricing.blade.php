@@ -28,8 +28,9 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                         <div class="pricing-tem">
-                            <h3 style="color: #20c997;">Free Plan</h3>
-                            <div class="price"><sup>$</sup>2000<span> / mo</span></div>
+                            <h3 style="color: #20c997;">Package-Tiny</h3>
+                            <h6>For individuals and teams getting started</h6>
+                            <div class="price"><sup>$</sup>30<span> / mo</span></div>
                             <div class="icon">
                                 <i class="bi bi-box" style="color: #20c997;"></i>
                             </div>
@@ -60,15 +61,16 @@
                                 </li> --}}
 
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy">Contact Us</a>
                         </div>
                     </div><!-- End Pricing Item -->
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                         <div class="pricing-tem">
                             <span class="featured">Featured</span>
-                            <h3 style="color: #0dcaf0;">Starter Plan</h3>
-                            <div class="price"><sup>$</sup>4000<span> / mo</span></div>
+                            <h3 style="color: #0dcaf0;">Package-Small</h3>
+                            <h6>For individuals and teams getting started</h6>
+                            <div class="price"><sup>$</sup>50<span> / mo</span></div>
                             <div class="icon">
                                 <i class="bi bi-send" style="color: #0dcaf0;"></i>
                             </div>
@@ -98,14 +100,15 @@
                                     Free Updates
                                 </li> --}}
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy">Contact Us</a>
                         </div>
                     </div><!-- End Pricing Item -->
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                         <div class="pricing-tem">
-                            <h3 style="color: #fd7e14;">Business Plan</h3>
-                            <div class="price"><sup>$</sup>6000<span> / mo</span></div>
+                            <h3 style="color: #fd7e14;">Package-Mid</h3>
+                            <h6>For individuals and teams getting started</h6>
+                            <div class="price"><sup>$</sup>70<span> / mo</span></div>
                             <div class="icon">
                                 <i class="bi bi-airplane" style="color: #fd7e14;"></i>
                             </div>
@@ -135,14 +138,15 @@
                                     Free Updates
                                 </li> --}}
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy">Contact Us</a>
                         </div>
                     </div><!-- End Pricing Item -->
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                         <div class="pricing-tem">
-                            <h3 style="color: #0d6efd;">Ultimate Plan</h3>
-                            <div class="price"><sup>$</sup>10,000<span> / mo</span></div>
+                            <h3 style="color: #0d6efd;">Package-Large</h3>
+                            <h6>For individuals and teams getting started</h6>
+                            <div class="price"><sup></sup>100+<span> / Employees</span></div>
                             <div class="icon">
                                 <i class="bi bi-rocket" style="color: #0d6efd;"></i>
                             </div>
@@ -172,7 +176,7 @@
                                     Free Updates
                                 </li> --}}
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy">Contact Us</a>
                         </div>
                     </div><!-- End Pricing Item -->
 

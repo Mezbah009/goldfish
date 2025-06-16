@@ -214,6 +214,7 @@
                 </li>
 
 
+                <!-- Blogs menu with submenus -->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-pen-fancy"></i>
@@ -262,7 +263,7 @@
                     </ul>
                 </li>
 
-
+                <!-- Blogs menu end-->
 
                 <li class="nav-item">
                     <a href="{{ route('casestudy.index') }}" class="nav-link">

@@ -11,9 +11,11 @@ use App\Models\Client;
 use App\Models\Comment;
 use App\Models\HomeFirstSection;
 use App\Models\HomeServicesSection;
+use App\Models\Newsletter;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
 {
@@ -49,6 +51,7 @@ class FrontController extends Controller
 
 
 
+    //------------blog section--------------------
     private function getSidebarData()
     {
         return [
@@ -174,8 +177,30 @@ class FrontController extends Controller
         return back()->with('success', 'Your comment has been posted.');
     }
 
+    //------------end blog section--------------------
 
 
+    //------------newsletter section--------------------
+
+    public function subscribe(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:newsletters,email',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        Newsletter::create([
+            'email' => $request->email,
+        ]);
+
+        return redirect()->back()->with('newsletter_success', 'You have successfully subscribed to our newsletter!');
+    }
 
 
 

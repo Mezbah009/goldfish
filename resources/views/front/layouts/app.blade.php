@@ -124,7 +124,7 @@
                     </li>
                     <li><a href="{{ route('front.pricing') }}">Pricing</a></li>
                     {{-- <li><a href="#services">Services</a></li> --}}
-                    <li class="dropdown"><a href="#"><span>Devices</span> <i
+                    {{-- <li class="dropdown"><a href="#"><span>Devices</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -142,7 +142,7 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     {{-- <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#team">Team</a></li> --}}
@@ -181,14 +181,23 @@
                     <div class="col-lg-6">
                         <h4>Join Our Newsletter</h4>
                         <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-                        <form action="{{ asset('front-assets/forms/newsletter.php') }}" method="post"
-                            class="php-email-form">
-                            <div class="newsletter-form"><input type="email" name="email"><input type="submit"
-                                    value="Subscribe"></div>
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+                        @if (session('newsletter_success'))
+                            <div class="alert alert-success text-center mb-3">
+                                {{ session('newsletter_success') }}
+                            </div>
+                        @endif
+
+                        <form action="{{ route('newsletter.subscribe') }}" method="POST" id="newsletter-form">
+                            @csrf
+                            <div class="newsletter-form">
+                                <input type="email" name="email" required placeholder="Enter your email">
+                                <input type="submit" value="Subscribe">
+                            </div>
+                            <div class="loading" style="display:none;">Loading</div>
+                            <div class="error-message text-danger"></div>
+                            <div class="sent-message text-success"></div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -286,6 +295,41 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('front-assets/assets/js/main.js') }}"></script>
+
+
+    <script>
+        $('#newsletter-form').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var email = form.find('input[name="email"]').val();
+            form.find('.loading').show();
+            form.find('.error-message').hide();
+            form.find('.sent-message').hide();
+
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    email: email
+                },
+                success: function(response) {
+                    form.find('.loading').hide();
+                    if (response.status) {
+                        form.find('.sent-message').text(response.message).show();
+                        form[0].reset();
+                    } else {
+                        form.find('.error-message').text(response.message).show();
+                    }
+                },
+                error: function(xhr) {
+                    form.find('.loading').hide();
+                    form.find('.error-message').text('Something went wrong.').show();
+                }
+            });
+        });
+    </script>
+
 
 </body>
 
