@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\HomeServicesSectionController;
 use App\Http\Controllers\admin\HomeThirdSectionController;
 use App\Http\Controllers\admin\JobController;
 use App\Http\Controllers\admin\ManagementController;
+use App\Http\Controllers\admin\NewsletterController;
 use App\Http\Controllers\admin\NumberController;
 use App\Http\Controllers\admin\OurJourneyController;
 use App\Http\Controllers\admin\ProductController;
@@ -408,6 +409,13 @@ Route::group(['prefix' => 'admin'], function () {
 
         //sitesetting
         Route::resource('site-settings', SiteSettingController::class);
+
+
+
+        Route::get('/newsletter', [NewsletterController::class, 'index'])->name('admin.newsletter.index');
+        Route::delete('/newsletter/{id}', [NewsletterController::class, 'destroy'])->name('admin.newsletter.destroy');
+        Route::get('/admin/newsletter/export', [NewsletterController::class, 'export'])->name('admin.newsletter.export');
+
 
 
 

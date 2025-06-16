@@ -219,7 +219,7 @@
                         {{-- <p>Khan Tower (2nd Floor , 3rd Floor & 4th Floor) </p>
                         <p>80/3, VIP Road, Kakrail Dhaka, Bangladesh.</p>
                         <p class="mt-3"><strong>Phone:</strong> <span>+88-01811317129</span></p> --}}
-                        <p><strong>Email:</strong> <span>info@opus-bd.com</span></p>
+                        <p><strong>Email:</strong> <span>info@goldfish-hr.com</span></p>
                     </div>
                 </div>
 
@@ -266,15 +266,7 @@
         <div class="container copyright text-center mt-4">
             <p>© <span>Copyright</span> <strong class="px-1 sitename"><a
                         href="https://opus-bd.com/">Goldfish-HR</a></strong> <span>All Rights
-                    Reserved</span></p>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                {{-- Designed by <a href="https://opus-bd.com/">Opus technology limited</a> Distributed by <a
-                    href=“https://themewagon.com>ThemeWagon --}}
-            </div>
+                    Reserved</span> Designed by <a href="https://opus-bd.com/">Opus Technology Limited</a></p>
         </div>
 
     </footer>

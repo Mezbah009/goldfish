@@ -264,6 +264,12 @@
                 </li>
 
                 <!-- Blogs menu end-->
+                <li class="nav-item">
+                    <a href="{{ route('admin.newsletter.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Newsletter</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('casestudy.index') }}" class="nav-link">
