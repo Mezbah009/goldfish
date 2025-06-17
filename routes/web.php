@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\ContactFormController;
 use App\Http\Controllers\admin\CyberSecurityFirstSectionController;
 use App\Http\Controllers\admin\CyberSecuritySecondSectionController;
+use App\Http\Controllers\admin\HomeAboutSectionController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\HomeFirstSectionController;
 use App\Http\Controllers\admin\HomeSecondSectionController;
@@ -157,8 +158,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/home-third-sections', [HomeThirdSectionController::class, 'store'])->name('home-third-sections.store');
         Route::get('/home-third-sections/{id}/edit', [HomeThirdSectionController::class, 'edit'])->name('home-third-sections.edit');
         Route::put('/home-third-sections/{id}', [HomeThirdSectionController::class, 'update'])->name('home-third-sections.update');
-
         Route::delete('/home-third-sections/{id}', [HomeThirdSectionController::class, 'destroy'])->name('home-third-sections.delete');
+
+
+        // Home about section
+        Route::get('/home-about', [HomeAboutSectionController::class, 'index'])->name('home-about.index');
+        Route::get('/home-about/edit', [HomeAboutSectionController::class, 'edit'])->name('home-about.edit');
+        Route::post('/home-about/update', [HomeAboutSectionController::class, 'update'])->name('home-about.update');
 
 
         // Route::resource('home-third-sections', HomeThirdSectionController::class);

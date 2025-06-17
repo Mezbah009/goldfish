@@ -118,8 +118,8 @@
                                 for modern Human Resource Management.
                             </p>
                             <div class="text-center text-lg-start">
-                                <a href="#"
-                                    class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                                <a href="{{ asset('uploads/brochures/Goldfish.pdf') }}"
+                                    class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center" target="_blank">
                                     <span>Download Brochure</span>
                                     <i class="bi bi-file-earmark-pdf-fill"></i>
                                 </a>
