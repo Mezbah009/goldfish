@@ -13,7 +13,7 @@
                             </h1>
                             <p data-aos="fade-up" data-aos-delay="100">{!! $home_first_sections->description !!}</p>
                             <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-                                <a href="{{ $home_first_sections->link }}" class="btn-get-started">Get Started <i
+                                <a href="{{ route('front.contact') }}" class="btn-get-started">Get Started <i
                                         class="bi bi-arrow-right"></i></a>
                                 <a href="#"
                                     class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
