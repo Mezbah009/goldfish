@@ -115,6 +115,8 @@
 
     <script src="{{ asset('admin-assets/js/datetimepicker.js') }}"></script>
 
+    <script src="//unpkg.com/alpinejs" defer></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
