@@ -30,7 +30,7 @@
                         <div class="pricing-tem">
                             <h3 style="color: #20c997;">Package-Tiny</h3>
                             <h6>For individuals and teams getting started</h6>
-                            <div class="price"><sup>$</sup>30<span> / mo</span></div>
+                            <div class="price"><sup>$</sup>75<span> / mo</span></div>
                             <div class="icon">
                                 <i class="bi bi-box" style="color: #20c997;"></i>
                             </div>
@@ -70,7 +70,7 @@
                             <span class="featured">Featured</span>
                             <h3 style="color: #0dcaf0;">Package-Small</h3>
                             <h6>For individuals and teams getting started</h6>
-                            <div class="price"><sup>$</sup>50<span> / mo</span></div>
+                            <div class="price"><sup>$</sup>150<span> / mo</span></div>
                             <div class="icon">
                                 <i class="bi bi-send" style="color: #0dcaf0;"></i>
                             </div>
@@ -108,7 +108,7 @@
                         <div class="pricing-tem">
                             <h3 style="color: #fd7e14;">Package-Mid</h3>
                             <h6>For individuals and teams getting started</h6>
-                            <div class="price"><sup>$</sup>70<span> / mo</span></div>
+                            <div class="price"><sup>$</sup>300<span> / mo</span></div>
                             <div class="icon">
                                 <i class="bi bi-airplane" style="color: #fd7e14;"></i>
                             </div>
